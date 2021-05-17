@@ -6,3 +6,471 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #1a1a1a;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+canvas{
+    display:block;
+    vertical-align:bottom;
+  }
+
+#sidebar {
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 50;
+    background: #1F1F1F;
+    color: white;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    min-width: 80px;
+    max-width: 80px;
+    text-align: center;
+
+    .sidebarHeader {
+        padding: 20px;
+        background: #2D2D2D;
+        align-items: center;
+        justify-content: center;
+        p {
+            color: white;
+        }
+        .toggle{
+            position: absolute;
+            top: calc(50% - 20px);
+            right: -20px;
+            width: 40px;
+            height: 40px;
+            background: white;
+            cursor: pointer;
+            border: 5px solid #1f1f1f;
+            border-radius: 50%;
+
+            &::before{
+                content: '\f054';
+                font-family: fontAwesome;
+                position: relative;
+                width: 100%;
+                height: 100%;
+                line-height: 30px;
+                text-align: center;
+                font-size: 16px;
+                color: #1f1f1f;
+
+            }
+
+            &.active::before{
+                content: '\f053';
+            }
+
+        }
+    }
+
+    ul {
+        flex: 1;
+    }
+
+    ul li{
+
+        >a {
+            padding: 10px;
+            font-size: 1.1em;
+            display: block;
+            color: white;
+            span{
+                text-align: left;
+                display: none;
+            }
+        }
+        >div{
+            font-size: 1.1em;
+            background: #2D2D2D;
+            color: white;
+            span{
+                text-align: left;
+                display: none;
+            }
+        }
+    }
+
+    ul li a:hover{
+        color: #1F1F1F;
+        background: #fff;
+    }
+    
+    ul ul a span{
+        font-size: 1.0em;
+        text-align: center;
+    }
+
+    #projectSubmenu li {
+        i {
+            padding: 10px;
+        }
+        a span{
+            display: none;
+        }
+    }
+
+    footer p{
+        display: none;
+    }
+
+    &.active footer p {
+        display: block;
+        color: white;
+        text-align: center;
+        margin: 0;
+        font-size: small;
+        flex: 0;
+
+    }
+
+    &.active {
+        min-width: 250px;
+        max-width: 250px;
+        
+        // #projectSubmenu::after {
+        //     top: auto;
+        //     bottom: 10px;
+        //     right: 50%;
+        //     -webkit-transform: translateX(50%);
+        //     -ms-transform: translateX(50%);
+        //     transform: translateX(50%);
+        // }
+        ul li a span{
+            display: inline;
+        }
+        #projectSubmenu a{
+            font-size: 1.0em;
+            padding-left: 30px;
+            text-align: left;
+        }
+        #projectSubmenu li a span {
+            display: inline;
+        }   
+    }
+    @media (max-width: 768px) {
+        min-width: 80px;
+        max-width: 80px;
+        margin-left: -80px;
+        &.active{
+            margin-left: 0px;
+        }
+
+    }
+}
+
+#content {
+    width: calc(100% - 80px);
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    z-index: 1;
+    //background: linear-gradient(0deg,rgba(26,26,26,.2),rgba(26,26,26,.8) 10%,#1a1a1a 70%),url(/img/bg_black.934eed8f.png);
+
+    &.active {
+        width: calc(100% - 250px);
+    }
+
+    #sidebarToggleBtn {
+        width: 40px;
+        height: 40px;
+        box-shadow: none;
+        outline: none;
+        border: none;
+        background:none;
+        span {
+            width: 80%;
+            height: 2px;
+            display: block;
+            background: white;
+            // 果凍效果
+            transition: all 0.8s cubic-bezier(0.8, -0.35, 0.2, 1.35);
+            transform: none;
+            opacity: 1;
+            margin: 5px auto;
+        }
+        
+        &.active span:first-of-type {
+            transform: rotate(45deg) translate(2px, 2px);
+            margin: 0 auto;
+        }
+
+        &.active span:nth-of-type(2) {
+            opacity: 0;
+            margin: 0 auto;
+        }
+        &.active span:last-of-type {
+            transform: rotate(-45deg) translate(1px, -1px);
+            margin: 0 auto;
+        }
+    }
+
+    #topNavbar {
+        display: flex;
+        padding-right: 40px;
+        padding: 15px 10px;
+        background: #fff;
+        border: none;
+        border-radius: 0;
+        margin-bottom: 40px;
+        //box-shadow: 1px 1px 3px rgba(255, 255, 255, 0.1);
+        
+    }
+
+    ul li {
+        font-size: 50px;
+    }
+}
+
+#particles-js{
+    width: 100%;
+    height: 100%;
+    
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+.particles-js-canvas-el {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    //background-size: cover;
+    //background: linear-gradient(0deg,rgba(26,26,26,.2),rgba(26,26,26,.8) 10%,#1a1a1a 70%),url(/img/bg_black.934eed8f.png);
+}
+// #index{
+//     background: url(img/background_top.8b9e7d07.jpg);
+// }
+
+#projectsIndex{
+    
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    min-height: 50vh;
+    
+    .container-fluid{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:  consolas;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
+        padding:  40px 0;
+        
+        .box{
+            position: relative;
+            width: 430px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin:  40px 30px;
+            transition: 0.5s;
+        }
+
+        //後方圖片暈影
+        .box::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50px;
+            width: 50%;
+            height: 100%;
+            background: #fff;
+            border-radius: 8px;
+            transform: skewX(15deg);
+            transition: 0.5s;
+            filter: blur(30px);
+        }
+        //後方圖片
+        .box::after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50px;
+            width: 50%;
+            height: 100%;
+            background: #fff;
+            border-radius: 8px;
+            transform: skewX(15deg);
+            transition: 0.5s;
+            
+        }
+        .box:hover:before,
+        .box:hover:after{
+            transform: skewX(0deg);
+            left: 20px;
+            width: calc(100% - 90px);
+        }
+
+        .box:nth-child(1):before,
+        .box:nth-child(1):after{
+            /* background: linear-gradient(315deg, #ffbc00, #ff0058); */
+            background: url(/img/discord.jpg);
+            background-size: cover;
+            background-position:center center;
+            /* background: url(/img/bg_white.5c644fd8.png); */
+
+        }
+        .box:nth-child(2):before,
+        .box:nth-child(2):after{
+            background: linear-gradient(315deg, #03a9f4, #ff0058);
+            
+        }
+        .box:nth-child(3):before,
+        .box:nth-child(3):after{
+            //background: linear-gradient(315deg, #4dff03, #00d0ff);
+            background: url(/img/laravel.jpg);
+            background-size: cover;
+            background-position:center center;
+        }
+        .box:nth-child(4):before,
+        .box:nth-child(4):after{
+            background: url(/img/flutter2.png);
+            background-size: cover;
+            background-position:center center;
+        }
+        .box span{
+            display: block;
+            position: absolute;
+            top:0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 50;
+            pointer-events: none;
+        }
+        //左上玻璃
+        .box span::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: 0.5s;
+            animation: animate 2s ease-in-out infinite;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        .box:hover span::before{
+            top: -50px;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+            opacity: 1;
+        }
+        //右下玻璃
+        .box span::after{
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: 0.5s;
+            animation: animate 2s ease-in-out infinite;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            animation-delay: -1s;
+        }
+        .box:hover span::after{
+            bottom: -50px;
+            right: 50px;
+            width: 100px;
+            height: 100px;
+            opacity: 1;
+        }
+
+        //移動效果
+        @keyframes animate{
+            0%, 100%{
+                transform: translateY(10px);
+            }
+            50%{
+                transform: translateY(-10px);
+            }
+        }
+        //主文字玻璃
+        .box .content{
+            position: relative;
+            left: 0;
+            padding: 20px 40px;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            z-index: 1;
+            transform: 0.5s;
+            color: white;
+        }
+        .box:hover .content{
+            left: -25px;
+            padding: 60px 40px;
+        }
+        .box .content h2{
+            font-size: 2em;
+            color: #fff;
+            margin-bottom: 0px;
+        }
+        .box .content p{
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            line-height: 1.4em;
+        }
+        //連結
+        .box .content a{
+            display: inline-block;
+            font-size: 1.1em;
+            color: #111;
+            background: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+    }
+}
